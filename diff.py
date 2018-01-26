@@ -22,7 +22,7 @@ def initialize():
     kuCoinDict = kucoin.getKuCoinDict()
     gateDict = gate.getGateDict()
     okexDict = okex.getOkExDict()
-    #poloniexDict = poloniex.getPoloniexDict()
+    poloniexDict = poloniex.getPoloniexDict()
     #Add more exchanges here
 
     '''
@@ -32,13 +32,13 @@ def initialize():
     addInDict(okexDict, 'OKEX')
     addInDict(binanceDict, 'Binance')
     addInDict(kuCoinDict, 'KuCoin')
-    #addInDict(poloniexDict, 'Poloniex')
+    addInDict(poloniexDict, 'Poloniex')
     #Add more exchanges here
 
     del binanceDict
     del kuCoinDict
     del okexDict
-    #del poloniexDict
+    del poloniexDict
     del gateDict
 
 def addInDict(exchangeDict, exchangeName):
