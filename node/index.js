@@ -15,6 +15,10 @@ request.get(url,function(err,res,body){
 });
 
 app.get("/",function(req,res){
+    
+    for (var key in priceList['prices']){
+        console.log(priceList[key]);
+    }
     res.render("index",{priceList:priceList});
 });
 

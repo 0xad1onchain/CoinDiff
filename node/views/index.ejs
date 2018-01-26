@@ -4,12 +4,82 @@
         <table class="table">
             <thead>
                 <tr>
-                    Gate.IO 
-                </tr>
-                <tr>
-                    
+                    <th>Name</th>
+                    <th>Gate.IO</th>
+                    <th>OkEx</th>
+                    <th>Poloniex</th>
+                    <th>Binance</th>
+                    <th>KuCoin</th>
+                    <th>Max</th>
+                    <th>Min</th>
+                    <th>Perc</th>
                 </tr>
             </thead>
+
+            <tbody>
+                <% for (var key in priceList['prices']){ %>
+                    <tr>
+                      <th scope="row"><%= key %></th>
+                        <td>
+                            <% if (priceList['prices'][key]['Gate.IO'] == -1){ %>
+                                <%= '_' %>
+                            <% } else { %>
+                                <%= priceList['prices'][key]['Gate.IO'] %>
+                            <% } %>
+                        </td>
+                        <td>
+                                <% if (priceList['prices'][key]['OKEX'] == -1){ %>
+                                    <%= '_' %>
+                                <% } else { %>
+                                    <%= priceList['prices'][key]['OKEX'] %>
+                                <% } %>
+                        </td>
+                        <td>
+                                <% if (priceList['prices'][key]['Poloniex'] == -1){ %>
+                                    <%= '_' %>
+                                <% } else { %>
+                                    <%= priceList['prices'][key]['Poloniex'] %>
+                                <% } %>
+                        </td>
+                        <td>
+                                <% if (priceList['prices'][key]['Binance'] == -1){ %>
+                                    <%= '_' %>
+                                <% } else { %>
+                                    <%= priceList['prices'][key]['Binance'] %>
+                                <% } %>
+                        </td>
+                        <td>
+                                <% if (priceList['prices'][key]['KuCoin'] == -1){ %>
+                                    <%= '_' %>
+                                <% } else { %>
+                                    <%= priceList['prices'][key]['KuCoin'] %>
+                                <% } %>
+                        </td>
+                        <td>
+                                <% if (priceList['stats'][key]['max']['value'] == -1){ %>
+                                    <%= '_' %>
+                                <% } else { %>
+                                    <%= priceList['stats'][key]['max']['value'] %>
+                                <% } %>
+                        </td>
+                        <td>
+                                <% if (priceList['stats'][key]['min']['value'] == -1){ %>
+                                    <%= '_' %>
+                                <% } else { %>
+                                    <%= priceList['stats'][key]['min']['value'] %>
+                                <% } %>
+                        </td>
+                        <td>
+                                <% if (priceList['stats'][key]['diff']['perc'] == -1){ %>
+                                    <%= '_' %>
+                                <% } else { %>
+                                    <%= priceList['stats'][key]['diff']['perc'] %>
+                                <% } %>
+                        </td>
+
+                    </tr>
+                <% } %>
+                  </tbody>
         </table>
     </div>
 
