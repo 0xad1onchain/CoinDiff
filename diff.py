@@ -12,14 +12,32 @@ import okex
 import poloniex
 import operator
 
-binanceDict = binance.getBinanceDict()
-kuCoinDict = kucoin.getKuCoinDict()
-gateDict = gate.getGateDict()
-okexDict = okex.getOkExDict()
-poloniexDict = okex.getOkExDict()
-#Add more exchanges here
-
+exchanges = {'Binance', 'Gate.IO', 'OKEX', 'KuCoin', 'Poloniex'}
 finalPriceDict = dict()
+
+def initialize():
+    binanceDict = binance.getBinanceDict()
+    kuCoinDict = kucoin.getKuCoinDict()
+    gateDict = gate.getGateDict()
+    okexDict = okex.getOkExDict()
+    poloniexDict = okex.getOkExDict()
+    #Add more exchanges here
+
+    '''
+    IMPORTANT: Names of exchanges entered here should be same as ones in the list 'exchanges'
+    '''
+    addInDict(gateDict, 'Gate.IO')
+    addInDict(okexDict, 'OKEX')
+    addInDict(binanceDict, 'Binance')
+    addInDict(kuCoinDict, 'KuCoin')
+    addInDict(poloniexDict, 'Poloniex')
+    #Add more exchanges here
+
+    del binanceDict
+    del kuCoinDict
+    del okexDict
+    del poloniexDict
+    del gateDict
 
 def addInDict(exchangeDict, exchangeName):
     for i in exchangeDict:
@@ -30,31 +48,19 @@ def addInDict(exchangeDict, exchangeName):
             finalPriceDict[i][exchangeName] = exchangeDict[i]
 
 def getDiff():
-    addInDict(gateDict, 'Gate.IO')
-    addInDict(okexDict, 'OKEX')
-    addInDict(binanceDict, 'Binance')
-    addInDict(kuCoinDict, 'KuCoin')
-    addInDict(poloniexDict, 'Poloniex')
-    #Add more exchanges here
 
-
+    initialize()
+    global finalPriceDict
     tempDict = dict()
     for i in finalPriceDict:
         if len(finalPriceDict[i]) != 1:
             tempDict[i] = finalPriceDict[i]
 
     finalPriceDict = tempDict
-
     del tempDict
-    del binanceDict
-    del kuCoinDict
-    del okexDict
-    del poloniexDict
-    del gateDict
-
-
 
     statDict = dict()
+    percDict = dict()
     for i in finalPriceDict:
         statDict[i] = dict()
         statDict[i]['max'] = dict()
@@ -66,5 +72,21 @@ def getDiff():
         statDict[i]['min']['value'] = finalPriceDict[i][statDict[i]['min']['exchange']]
         statDict[i]['diff']['value'] = statDict[i]['max']['value'] - statDict[i]['min']['value']
         statDict[i]['diff']['perc'] = statDict[i]['diff']['value']*100/statDict[i]['min']['value']
+        percDict[i] = statDict[i]['diff']['perc']
 
-    return (finalPriceDict, statDict)
+    for i in finalPriceDict:
+        for j in exchanges:
+            if j not in finalPriceDict[i]:
+                finalPriceDict[i][j] = -1
+
+    print (finalPriceDict)
+
+    outputDict = dict()
+    outputDict['prices'] = finalPriceDict
+    outputDict['stats'] = statDict
+    outputDict['perc'] = percDict
+    
+
+    return (outputDict)
+
+getDiff()
