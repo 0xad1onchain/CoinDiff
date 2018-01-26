@@ -10,7 +10,7 @@ outputDict = dict()
 
 
 def getData():
-  threading.Timer(300.0, getData).start()
+  threading.Timer(20.0, getData).start()
   print ("Hello, World!")
   global outputDict
   outputDict = diff.getDiff()

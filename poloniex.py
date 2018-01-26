@@ -8,9 +8,8 @@ ua = UserAgent(verify_ssl=False)
 api_url = "https://poloniex.com/public?command=returnTicker"
 
 def getPoloniexCoins():
-    api_gate_url = api_url
     headers = {'User-Agent': ua.Safari}
-    response = requests.get(api_gate_url,headers=headers)
+    response = requests.get(api_url,headers=headers)
     if (response.status_code == 200):
         return json.loads(response.content.decode('utf-8'))
     else:
@@ -18,7 +17,7 @@ def getPoloniexCoins():
     
 
 def getPoloniexDict():
-    coin_list = getGateCoins()
+    coin_list = getPoloniexCoins()
 
     price_dict = dict()
 
