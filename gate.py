@@ -24,12 +24,16 @@ def getGateDict():
 
     for i in coin_list:
         base, token = i.split('_')
-        if token == 'usdt':
-            price_dict[base] = coin_list[i]['last']
+        base = base.upper()
+        token = token.upper()
+        if token == 'USDT':
+            price_dict[base] = float(coin_list[i]['last'])
 
     for i in coin_list:
         base,token = i.split('_')
-        if token != 'usdt':
+        base = base.upper()
+        token = token.upper()
+        if token != 'USDT':
             if base not in price_dict:
                 price = float(price_dict[token]) * float(coin_list[i]['last'])
                 #Do price round off
@@ -38,6 +42,5 @@ def getGateDict():
     return (price_dict)
 
 
-print (getGateDict())
-print (timeit.default_timer() - start_time)
+
 

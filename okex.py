@@ -10,7 +10,7 @@ def getOkExDict():
     for i in coin_dict:
         base, token = i.split('/')
         if token == 'USDT':
-            price_dict[base] = coin_dict[i]['last']
+            price_dict[base] = float(coin_dict[i]['last'])
 
     for i in coin_dict:
         base,token = i.split('/')
@@ -19,5 +19,3 @@ def getOkExDict():
                 price_dict[base] = float(coin_dict[i]['last']) * float(price_dict[token])
     return price_dict
 
-print (len(getOkExDict()))
-print (timeit.default_timer() - start_time)

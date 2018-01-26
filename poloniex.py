@@ -17,7 +17,7 @@ def getPoloniexDict():
     for i in coin_list:
         base, token = i.split('/')
         if token == 'USDT':
-            price_dict[base] = coin_list[i]['last']
+            price_dict[base] = float(coin_list[i]['last'])
     for i in coin_list:
         base, token = i.split('/')
         if token != 'USDT':
@@ -26,4 +26,3 @@ def getPoloniexDict():
 
     return price_dict
     
-print (getPoloniexDict())

@@ -51,9 +51,9 @@ def getBinanceDict():
         lenbase = len(base)
         token = i['symbol'][lenbase:]
         if token == 'USDT':
-            price_dict[base] = i['price']
+            price_dict[base] = float(i['price'])
         #Adding dummy value for stupid '123456':'123' entry
-        price_dict['456'] = '0.0'
+        price_dict['456'] = 0.0
 
     for i in price_list:
         base = coin_dict[i['symbol']]
@@ -61,9 +61,7 @@ def getBinanceDict():
         token = i['symbol'][lenbase:]   
         if token != 'USDT':
             if base not in price_dict:
-                price_dict[base] = str(float(i['price']) * float(price_dict[token]))
+                price_dict[base] = float(i['price']) * float(price_dict[token])
 
     return (price_dict)
 
-print (getBinanceDict())
-print (timeit.default_timer() - start_time)
