@@ -61,7 +61,10 @@ def getBinanceDict():
         token = i['symbol'][lenbase:]   
         if token != 'USDT':
             if base not in price_dict:
-                price_dict[base] = float(i['price']) * float(price_dict[token])
+                price = float(i['price']) * float(price_dict[token])
+                price = float("{0:.3f}".format(price))
+                price_dict[base] = price
 
     return (price_dict)
+
 

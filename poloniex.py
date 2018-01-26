@@ -36,9 +36,12 @@ def getPoloniexDict():
             if base not in price_dict:
                 price = float(price_dict[token]) * float(coin_list[i]['last'])
                 #Do price round off
+                price = float("{0:.3f}".format(price))
                 price_dict[base] = price
 
     return (price_dict)
+
+print (getPoloniexDict())
 
 
 
