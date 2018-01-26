@@ -16,6 +16,7 @@ def getKuCoinDict():
         base,token = i.split('/')
         if token != 'USDT':
             if base not in price_dict:
-                price_dict[base] = float(coin_dict[i]['last']) * float(price_dict[token])
+                if (coin_dict[i]['last'] is not None and price_dict[token] is not None):
+                    price_dict[base] = float(coin_dict[i]['last']) * float(price_dict[token])
     return price_dict
 
