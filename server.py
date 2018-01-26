@@ -1,9 +1,22 @@
 from flask import Flask
 import diff
 import json
+import threading
 
 app = Flask(__name__)
-outputDict = diff.getDiff()
+#outputDict = diff.getDiff()
+
+outputDict = dict()
+
+
+def getData():
+  threading.Timer(300.0, getData).start()
+  print ("Hello, World!")
+  global outputDict
+  outputDict = diff.getDiff()
+  print (outputDict['prices']['BTC'])
+
+
 
 @app.route("/")
 def hello():
@@ -11,10 +24,10 @@ def hello():
 
 @app.route("/price")
 def index():
-    outputDict = diff.getDiff()
+    global outputDict
     finalJSON = json.dumps(outputDict)
     return finalJSON
 
 if __name__ == '__main__':
-    
+    getData()
     app.run(debug=True)

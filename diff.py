@@ -16,11 +16,13 @@ exchanges = {'Binance', 'Gate.IO', 'OKEX', 'KuCoin', 'Poloniex'}
 finalPriceDict = dict()
 
 def initialize():
+    global finalPriceDict
+    finalPriceDict = {}
     binanceDict = binance.getBinanceDict()
     kuCoinDict = kucoin.getKuCoinDict()
     gateDict = gate.getGateDict()
     okexDict = okex.getOkExDict()
-    poloniexDict = okex.getOkExDict()
+    #poloniexDict = poloniex.getPoloniexDict()
     #Add more exchanges here
 
     '''
@@ -30,13 +32,13 @@ def initialize():
     addInDict(okexDict, 'OKEX')
     addInDict(binanceDict, 'Binance')
     addInDict(kuCoinDict, 'KuCoin')
-    addInDict(poloniexDict, 'Poloniex')
+    #addInDict(poloniexDict, 'Poloniex')
     #Add more exchanges here
 
     del binanceDict
     del kuCoinDict
     del okexDict
-    del poloniexDict
+    #del poloniexDict
     del gateDict
 
 def addInDict(exchangeDict, exchangeName):
@@ -79,7 +81,6 @@ def getDiff():
             if j not in finalPriceDict[i]:
                 finalPriceDict[i][j] = -1
 
-    print (finalPriceDict)
 
     outputDict = dict()
     outputDict['prices'] = finalPriceDict
@@ -88,3 +89,4 @@ def getDiff():
     
 
     return (outputDict)
+
