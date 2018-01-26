@@ -10,7 +10,9 @@ def getKuCoinDict():
     for i in coin_dict:
         base, token = i.split('/')
         if token == 'USDT':
-            price_dict[base] = float(coin_dict[i]['last'])
+            price = float(coin_dict[i]['last'])
+            price = float("{0:.3f}".format(price))
+            price_dict[base] = price
 
     for i in coin_dict:
         base,token = i.split('/')

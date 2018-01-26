@@ -73,7 +73,9 @@ def getDiff():
         statDict[i]['min']['exchange'] = min(finalPriceDict[i].keys(), key=lambda k: finalPriceDict[i][k])
         statDict[i]['min']['value'] = finalPriceDict[i][statDict[i]['min']['exchange']]
         statDict[i]['diff']['value'] = statDict[i]['max']['value'] - statDict[i]['min']['value']
-        statDict[i]['diff']['perc'] = statDict[i]['diff']['value']*100/statDict[i]['min']['value']
+        perc = statDict[i]['diff']['value']*100/statDict[i]['min']['value']
+        perc = float("{0:.2f}".format(perc))
+        statDict[i]['diff']['perc'] = perc
         percDict[i] = statDict[i]['diff']['perc']
 
     for i in finalPriceDict:

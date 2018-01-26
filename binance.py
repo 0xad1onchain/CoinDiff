@@ -51,7 +51,9 @@ def getBinanceDict():
         lenbase = len(base)
         token = i['symbol'][lenbase:]
         if token == 'USDT':
-            price_dict[base] = float(i['price'])
+            price = float(i['price'])
+            price = float("{0:.3f}".format(price))
+            price_dict[base] = price
         #Adding dummy value for stupid '123456':'123' entry
         price_dict['456'] = 0.0
 
