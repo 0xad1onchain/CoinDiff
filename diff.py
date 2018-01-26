@@ -88,5 +88,3 @@ def getDiff():
     
 
     return (outputDict)
-
-getDiff()
