@@ -1,11 +1,15 @@
 import json
+from fake_useragent import UserAgent
 import requests
+import timeit
 
+start_time = timeit.default_timer()
+ua = UserAgent(verify_ssl=False)
 base_url = "http://api.binance.com"
 
 def getBinanceCoins():
     api_coinInfo_url = base_url + "/api/v1/exchangeInfo"
-    headers = {'Content-Type': 'application/json'}
+    headers = {'User-Agent': ua.Safari}
     response = requests.get(api_coinInfo_url,headers=headers)
 
     if (response.status_code == 200):
@@ -56,9 +60,10 @@ def getBinanceDict():
         lenbase = len(base)
         token = i['symbol'][lenbase:]   
         if token != 'USDT':
-            price_dict[base] = str(float(i['price']) * float(price_dict[token]))
+            if base not in price_dict:
+                price_dict[base] = str(float(i['price']) * float(price_dict[token]))
 
     return (price_dict)
 
-for i, j in getBinanceDict():
-    print(i,j)
+print (getBinanceDict())
+print (timeit.default_timer() - start_time)

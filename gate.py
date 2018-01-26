@@ -1,7 +1,9 @@
 import json
 from fake_useragent import UserAgent
 import requests
+import timeit
 
+start_time = timeit.default_timer()
 ua = UserAgent(verify_ssl=False)
 api_url = "http://data.gate.io/api2/1"
 
@@ -37,4 +39,5 @@ def getGateDict():
 
 
 print (getGateDict())
+print (timeit.default_timer() - start_time)
 

@@ -2,11 +2,11 @@ import ccxt
 import timeit
 
 start_time = timeit.default_timer()
-okex = ccxt.okex()
-coin_dict = okex.fetchTickers()
+kucoin = ccxt.kucoin()
+coin_dict = kucoin.fetchTickers()
 
 price_dict = dict()
-def getOkExDict():
+def getKuCoinDict():
     for i in coin_dict:
         base, token = i.split('/')
         if token == 'USDT':
@@ -19,5 +19,5 @@ def getOkExDict():
                 price_dict[base] = float(coin_dict[i]['last']) * float(price_dict[token])
     return price_dict
 
-print (len(getOkExDict()))
+print (getKuCoinDict())
 print (timeit.default_timer() - start_time)
