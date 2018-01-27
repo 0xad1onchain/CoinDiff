@@ -15,7 +15,7 @@ app.get("/",function(req,res){
     
     request.get(url,function(err,res,body){
         priceList = JSON.parse(body);
-        console.log(priceList['stats']['BTC'])
+        console.log(priceList['updateTime'])
     });
     res.render("index",{priceList:priceList});
 });

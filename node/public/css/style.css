@@ -1,49 +1,85 @@
-/* Your custom styles */
+
+  /* Your custom styles */
 body { 
-    padding-top: 78px; 
-    
+  padding-top: 78px; 
+  
 }
 
+thead, tr, th, tbody, td, table, tr{
+  text-align: center;
+}
+
+
 .page-footer {
-    padding-top: 20px;
-    color: rgba(255,255,255,.8);
-    background-color:#343a40;
-  }
-  
-  .page-footer .footer-copyright {
-    overflow: hidden;
-    min-height: 50px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    padding: 10px 0px;
-    color: rgba(255, 255, 255, 0.8);
-    background-color: rgba(51, 51, 51, 0.08);
-  }
+  padding-top: 20px;
+
+  color: rgba(255,255,255,.8);
+  background-color:#343a40;
+}
+
+.page-footer .footer-copyright {
+  overflow: hidden;
+  min-height: 50px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0px;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(51, 51, 51, 0.08);
+}
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
+}
+
+@media only screen and (min-width: 601px) {
   .container {
-    margin: 0 auto;
-    max-width: 1280px;
-    width: 90%;
+    width: 85%;
   }
-  
-  @media only screen and (min-width: 601px) {
-    .container {
-      width: 85%;
-    }
+}
+
+@media only screen and (min-width: 993px) {
+  .container {
+    width: 70%;
   }
-  
-  @media only screen and (min-width: 993px) {
-    .container {
-      width: 70%;
-    }
-  }
-  
-  .container .row {
-    margin-left: -0.75rem;
-    margin-right: -0.75rem;
-  }
+}
+
+.container .row {
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+}
+
+.right {
+  float: right !important;
+}
+ul{
+  list-style-type: none;
+}
+
+#last{
+  padding-bottom: 25px;
+}
+
+.footer-links a{
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#git{
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#exchange{
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer {
+  /* position: fixed; */
+  bottom: 0px;
+  width: 100%;
+}

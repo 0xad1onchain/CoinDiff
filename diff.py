@@ -85,6 +85,15 @@ def getDiff():
             if j not in finalPriceDict[i]:
                 finalPriceDict[i][j] = -1
 
+    temp = {}
+    newList = sorted(percDict.items(), key=lambda x:x[1], reverse=True)
+
+    for i in newList:
+        temp[i[0]] = finalPriceDict[i[0]]
+   
+
+    finalPriceDict = temp
+
 
     outputDict = dict()
     outputDict['prices'] = finalPriceDict
@@ -94,9 +103,13 @@ def getDiff():
     local = timezone('Asia/Calcutta')
     
     time = local.localize(naive_dt)
-    
+    time = str(time)
+    main, tz = time.split('+')
+    req, tem = main.split('.')
+    time = str(req) + ' IST'
     outputDict['updateTime'] = str(time)
     return (outputDict)
 
 
+getDiff()
 
