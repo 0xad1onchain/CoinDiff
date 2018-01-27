@@ -106,7 +106,7 @@ def getDiff():
     time = str(time)
     main, tz = time.split('+')
     req, tem = main.split('.')
-    time = str(req) + ' IST'
+    time = str(req)
     outputDict['updateTime'] = str(time)
     return (outputDict)
 
