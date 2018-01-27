@@ -78,8 +78,22 @@ ul{
   color: rgba(255, 255, 255, 0.8);
 }
 
+#sort{
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .footer {
   /* position: fixed; */
   bottom: 0px;
   width: 100%;
+}
+
+th a{
+  display:block;
+  /* Making the headerlinks 100% width */
+  width:100%;
+
+  /* Making the headerlinks 100% height ??? */
+  height: 100%;
+  color: #ffffff;
 }
