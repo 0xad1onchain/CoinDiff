@@ -11,6 +11,8 @@ import kucoin
 import okex
 import poloniex
 import operator
+from datetime import datetime
+from pytz import timezone
 
 exchanges = {'Binance', 'Gate.IO', 'OKEX', 'KuCoin', 'Poloniex'}
 finalPriceDict = dict()
@@ -88,7 +90,13 @@ def getDiff():
     outputDict['prices'] = finalPriceDict
     outputDict['stats'] = statDict
     outputDict['perc'] = percDict
+    naive_dt = datetime.now()
+    local = timezone('Asia/Calcutta')
     
-
+    time = local.localize(naive_dt)
+    
+    outputDict['updateTime'] = str(time)
     return (outputDict)
+
+
 
