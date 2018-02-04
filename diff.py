@@ -66,19 +66,23 @@ def getDiff():
     statDict = dict()
     percDict = dict()
     for i in finalPriceDict:
-        statDict[i] = dict()
-        statDict[i]['max'] = dict()
-        statDict[i]['min'] = dict()
-        statDict[i]['diff'] = dict()
-        statDict[i]['max']['exchange'] = max(finalPriceDict[i].keys(), key=lambda k: finalPriceDict[i][k])
-        statDict[i]['max']['value'] = finalPriceDict[i][statDict[i]['max']['exchange']]
-        statDict[i]['min']['exchange'] = min(finalPriceDict[i].keys(), key=lambda k: finalPriceDict[i][k])
-        statDict[i]['min']['value'] = finalPriceDict[i][statDict[i]['min']['exchange']]
-        statDict[i]['diff']['value'] = statDict[i]['max']['value'] - statDict[i]['min']['value']
-        perc = statDict[i]['diff']['value']*100/statDict[i]['min']['value']
-        perc = float("{0:.2f}".format(perc))
-        statDict[i]['diff']['perc'] = perc
-        percDict[i] = statDict[i]['diff']['perc']
+        try:
+            statDict[i] = dict()
+            statDict[i]['max'] = dict()
+            statDict[i]['min'] = dict()
+            statDict[i]['diff'] = dict()
+            statDict[i]['max']['exchange'] = max(finalPriceDict[i].keys(), key=lambda k: finalPriceDict[i][k])
+            statDict[i]['max']['value'] = finalPriceDict[i][statDict[i]['max']['exchange']]
+            statDict[i]['min']['exchange'] = min(finalPriceDict[i].keys(), key=lambda k: finalPriceDict[i][k])
+            statDict[i]['min']['value'] = finalPriceDict[i][statDict[i]['min']['exchange']]
+            statDict[i]['diff']['value'] = statDict[i]['max']['value'] - statDict[i]['min']['value']
+            perc = statDict[i]['diff']['value']*100/statDict[i]['min']['value']
+            perc = float("{0:.2f}".format(perc))
+            statDict[i]['diff']['perc'] = perc
+            percDict[i] = statDict[i]['diff']['perc']
+        except Exception as e:
+            print(e)
+            continue
 
     for i in finalPriceDict:
         for j in exchanges:
